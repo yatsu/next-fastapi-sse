@@ -1,14 +1,14 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
-    "dev:tailwind": "concurrently \"next dev --turbo\" \"npm run tailwind -- --watch\"",
+    "dev": "scripty",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "tailwind": "tailwindcss -i styles/globals.css -o styles/dist.css",
     "format": "prettier --write \"**/*.{js,ts,tsx,md}\"",
-    "postinstall": "npm run tailwind"
+    "postinstall": "npm run tailwind",
+    "backend:dev": "scripty"
   },
   "prettier": {
     "arrowParens": "always",
@@ -19,6 +19,7 @@
   "dependencies": {
     "clsx": "1.2.1",
     "concurrently": "7.5.0",
+    "debug": "4.3.4",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -27,6 +28,7 @@
     "use-count-up": "3.0.1"
   },
   "devDependencies": {
+    "@types/debug": "4.1.7",
     "@types/node": "18.0.3",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
@@ -36,6 +38,7 @@
     "postcss": "^8.4.14",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.12",
+    "scripty": "2.1.1",
     "tailwindcss": "^3.1.6",
     "typescript": "4.7.4"
   }
