@@ -17,6 +17,7 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.1.12
   react: 18.2.0
   react-dom: 18.2.0
+  react-hooks-sse: 2.1.0
   scripty: 2.1.1
   styled-components: 6.0.0-beta.2
   styled-jsx: 5.1.0
@@ -31,6 +32,7 @@ dependencies:
   next: 13.0.5_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-hooks-sse: 2.1.0_react@18.2.0
   styled-components: 6.0.0-beta.2_biqbaboplfbrettd7655fr4n2y
   styled-jsx: 5.1.0_react@18.2.0
   use-count-up: 3.0.1_react@18.2.0
@@ -3395,6 +3397,15 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-hooks-sse/2.1.0_react@18.2.0:
+    resolution: {integrity: sha512-w7gFWUd8BPfb1bnB5A7zNX2scSttKQQeozJ/jJV0Bnh+7sXeWz+KMwtrEPRrzUzt0CvL7C1ClHJvO3s5pBVJFQ==}
+    peerDependencies:
+      react: '>= 16.7.0'
+    dependencies:
+      '@babel/runtime': 7.20.1
+      react: 18.2.0
     dev: false
 
   /react-is/16.13.1:

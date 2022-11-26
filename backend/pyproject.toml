@@ -7,9 +7,15 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-fastapi = "^0.87.0"
+fastapi = {extras = ["all"], version = "^0.87.0"}
 uvicorn = "^0.20.0"
+sse-starlette = "^1.2.1"
+asyncio = "^3.4.3"
 
+
+[tool.poetry.group.dev.dependencies]
+sseclient-py = "^1.7.2"
+requests = "^2.28.1"
 
 [build-system]
 requires = ["poetry-core"]

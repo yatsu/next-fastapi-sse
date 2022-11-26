@@ -1,8 +1,5 @@
-import debug from 'debug';
-
-const log = debug('nf:main');
-
-log.log = console.log.bind(console);
+import log from './logger';
+import SSEContainer from './sse';
 
 async function getData() {
   const res = await fetch(`${process.env.TOP_URL}/api/data`);
@@ -16,11 +13,14 @@ async function getData() {
 
 export default async function Page() {
   const data = await getData();
-  log("fetched data", data);
+  log('fetched data', data);
 
   return (
-    <div>
-      <div>Data: <pre>{JSON.stringify(data)}</pre></div>
-    </div>
+    <>
+      <div>
+        Data: <pre>{JSON.stringify(data)}</pre>
+      </div>
+      <SSEContainer />
+    </>
   );
 }
