@@ -21,11 +21,9 @@ export default function SSEContainer(props: SSEContainerProps) {
   function handleClickButton(ev: React.MouseEvent<HTMLButtonElement>) {
     ev.preventDefault();
 
-    (async () => {
-      const url = `${process.env.NEXT_PUBLIC_TOP_URL}/api/v1/async_data`;
-      log(`fetch: ${url}`);
-      await fetch(url);
-    })().then(() => {});
+    const url = `${process.env.NEXT_PUBLIC_TOP_URL}/api/v1/async_data`;
+    log(`fetch: ${url}`);
+    fetch(url).then(() => {});
   }
 
   return (
