@@ -18,12 +18,19 @@ export const sleep = (ms: number) =>
 // curl -Nv localhost:3210/api/events/xxx
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { subscriberId } = req.query;
-  log('received subscriber ID', subscriberId);
-  const sid = CryptoJS.AES.decrypt(
-    subscriberId as string,
-    process.env.SESSION_SECRET!,
-  ).toString(CryptoJS.enc.Utf8);
-  log('received subscriber ID', subscriberId, '->', sid);
+  let sid = '';
+  try {
+    sid = CryptoJS.AES.decrypt(
+      subscriberId as string,
+      process.env.SESSION_SECRET!,
+    ).toString(CryptoJS.enc.Utf8);
+    log('received subscriber ID', subscriberId, '->', sid);
+  } catch (err) {
+    throw Error(`Invalid subscriberId: ${err}`);
+  }
+  if (sid === '') {
+    throw Error('Invalid subscriberId');
+  }
 
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Content-Type', 'text/event-stream;charset=utf-8');
