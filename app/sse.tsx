@@ -29,11 +29,10 @@ export default function SSEContainer(props: SSEContainerProps) {
   return (
     <SSEProvider
       endpoint={
-        global.location
-          ? `${location.origin}/api/events/${subscriberId}` // JavaScript (Node.js) implementation
-          : `${process.env.BACKEND_URL}/api/events/${subscriberId}`
-        // ? `${location.origin}/api/v1/events` // Python implementation (does not work well)
-        // : `${process.env.BACKEND_URL}/api/v1/events`
+        // JavaScript (Node.js) implementation
+        `${process.env.NEXT_PUBLIC_TOP_URL}/api/events/${subscriberId}`
+        // Python implementation (does not work well)
+        // `${process.env.NEXT_PUBLIC_TOP_URL}/api/events/${subscriberId}`
       }
     >
       <button
