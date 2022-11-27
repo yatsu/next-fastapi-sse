@@ -11,6 +11,7 @@ specifiers:
   debug: 4.3.4
   eslint: 8.19.0
   eslint-config-next: latest
+  kafkajs: 2.2.3
   next: latest
   postcss: ^8.4.14
   prettier: ^2.7.1
@@ -29,6 +30,7 @@ dependencies:
   clsx: 1.2.1
   concurrently: 7.5.0
   debug: 4.3.4
+  kafkajs: 2.2.3
   next: 13.0.5_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -2985,6 +2987,11 @@ packages:
       array-includes: 3.1.6
       object.assign: 4.1.4
     dev: true
+
+  /kafkajs/2.2.3:
+    resolution: {integrity: sha512-JmzIiLHE/TdQ7b4I2B/DNMtfhTh66fmEaEg7gGkyQXBC6f1A7I2jSjeUsVIJfC8d9YcEIURyBjtOEKBO5OHVhg==}
+    engines: {node: '>=14.0.0'}
+    dev: false
 
   /language-subtag-registry/0.3.22:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}

@@ -11,6 +11,8 @@ fastapi = {extras = ["all"], version = "^0.87.0"}
 uvicorn = "^0.20.0"
 sse-starlette = "^1.2.1"
 asyncio = "^3.4.3"
+confluent-kafka = "^1.9.2"
+pydantic = "^1.10.2"
 
 
 [tool.poetry.group.dev.dependencies]

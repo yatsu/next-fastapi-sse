@@ -8,7 +8,9 @@
     "tailwind": "tailwindcss -i styles/globals.css -o styles/dist.css",
     "format": "prettier --write \"**/*.{js,ts,tsx,md}\"",
     "postinstall": "npm run tailwind",
-    "backend:dev": "scripty"
+    "backend:dev": "scripty",
+    "worker:run": "scripty",
+    "topics:create": "scripty"
   },
   "prettier": {
     "arrowParens": "always",
@@ -16,10 +18,16 @@
     "trailingComma": "all",
     "singleQuote": true
   },
+  "config": {
+    "scripty": {
+      "silent": true
+    }
+  },
   "dependencies": {
     "clsx": "1.2.1",
     "concurrently": "7.5.0",
     "debug": "4.3.4",
+    "kafkajs": "2.2.3",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
