@@ -24,8 +24,10 @@
     }
   },
   "dependencies": {
+    "@types/crypto-js": "4.1.1",
     "clsx": "1.2.1",
     "concurrently": "7.5.0",
+    "crypto-js": "4.1.1",
     "debug": "4.3.4",
     "kafkajs": "2.2.3",
     "next": "latest",

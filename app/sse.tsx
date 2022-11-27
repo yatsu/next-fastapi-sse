@@ -1,4 +1,5 @@
-'use client';
+'use client'; // SSEProvider uses `useContext()` which is not available in a Server Component
+
 import { SSEProvider, useSSE } from 'react-hooks-sse';
 import log from './logger';
 
@@ -10,7 +11,13 @@ type Message = {
   value: number;
 };
 
-export default function SSEContainer() {
+type SSEContainerProps = {
+  subscriberId: string;
+};
+
+export default function SSEContainer(props: SSEContainerProps) {
+  const { subscriberId } = props;
+
   function handleClickButton(ev: React.MouseEvent<HTMLButtonElement>) {
     ev.preventDefault();
 
@@ -25,8 +32,8 @@ export default function SSEContainer() {
     <SSEProvider
       endpoint={
         global.location
-          ? `${location.origin}/api/events` // JavaScript (Node.js) implementation
-          : `${process.env.BACKEND_URL}/api/events`
+          ? `${location.origin}/api/events/${subscriberId}` // JavaScript (Node.js) implementation
+          : `${process.env.BACKEND_URL}/api/events/${subscriberId}`
         // ? `${location.origin}/api/v1/events` // Python implementation (does not work well)
         // : `${process.env.BACKEND_URL}/api/v1/events`
       }
