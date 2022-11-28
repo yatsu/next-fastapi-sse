@@ -12,9 +12,9 @@ supporting:
 
 ```mermaid
 graph LR
-    A[Browser] -->|HTML/API| B[Backend<br/>Next.js]
+    A[Browser] -->|HTML/API| B[Next.js Backend<br/>Node.js]
     B -->|SSE| A
-    B --> |proxy<br/>/api/v1| C[FastAPI]
+    B --> |proxy<br/>/api/v1| C[FastAPI<br/>Backend]
     C --> D[Request topic<br/>Kafka]
     D --> E[Worker]
     E --> F[Response topic<br/>Kafka]
