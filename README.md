@@ -26,6 +26,7 @@ graph LR
 * [Node.js](https://nodejs.org/en/)
 * [pnpm](https://pnpm.io/)
 * [Python](https://www.python.org/)
+* [Poetry](https://python-poetry.org/)
 * [Apache Kafka](https://kafka.apache.org/)
 
 ## Setup
