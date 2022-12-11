@@ -1,7 +1,7 @@
 'use client'; // SSEProvider uses `useContext()` which is not available in a Server Component
 
 import { SSEProvider, useSSE } from 'react-hooks-sse';
-import log from './logger';
+import log from '../logger';
 
 type State = {
   count: number | null;
@@ -11,17 +11,17 @@ type Message = {
   value: number;
 };
 
-type SSEContainerProps = {
+type SSEMainProps = {
   subscriberId: string;
 };
 
-export default function SSEContainer(props: SSEContainerProps) {
+export default function SSEMain(props: SSEMainProps) {
   const { subscriberId } = props;
 
   function handleClickButton(ev: React.MouseEvent<HTMLButtonElement>) {
     ev.preventDefault();
 
-    const url = `${process.env.NEXT_PUBLIC_TOP_URL}/api/v1/async_data`;
+    const url = `${process.env.NEXT_PUBLIC_TOP_URL}/api/v1/sse_req`;
     log(`fetch: ${url}`);
     fetch(url).then(() => {});
   }

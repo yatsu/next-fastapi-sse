@@ -1,19 +1,10 @@
 import CryptoJS from 'crypto-js';
 import debug from 'debug';
-import { Kafka } from 'kafkajs';
 import { NextApiRequest, NextApiResponse } from 'next';
+import kafka from '../(kafka)';
 
 const log = debug('nf:events');
-
 log.log = console.log.bind(console);
-
-const kafka = new Kafka({
-  clientId: 'nf.api',
-  brokers: [process.env.KAFKA_SERVER!],
-});
-
-export const sleep = (ms: number) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
 
 // curl -Nv localhost:3210/api/events/xxx
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -37,7 +28,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   res.setHeader('Cache-Control', 'no-cache, no-transform');
   res.setHeader('X-Accel-Buffering', 'no');
 
-  const stop = new Promise((resolve) => {
+  const closed = new Promise((resolve) => {
     req.once('close', () => {
       resolve(null);
     });
@@ -50,7 +41,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   log(`SSE start: ${process.env.KAFKA_SERVER}`);
   try {
     await consumer.subscribe({
-      topic: 'nf.response',
+      topic: 'nf.sse.response',
       fromBeginning: false,
     });
     await consumer.run({
@@ -65,7 +56,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         ]);
       },
     });
-    await stop;
+    await closed;
   } catch (err) {
     log(`SSE error: ${err}`);
   } finally {

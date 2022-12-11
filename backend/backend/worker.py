@@ -2,6 +2,7 @@ import asyncio
 import json
 import logging
 import os
+from typing import Dict
 
 from confluent_kafka import Consumer, KafkaException
 
@@ -42,10 +43,11 @@ async def main():
                 f"{msg.topic()} [{msg.partition()}] at offset {msg.offset()} "
                 f"with key {str(msg.key())}"
             )
-            logger.info(f"consume message: {msg.value()}")
+            msg_value = json.loads(msg.value())
+            logger.info(f"consume message: {msg_value}")
             consumer.store_offsets(msg)
 
-            await produce_responses(producer)
+            await produce_responses(producer, msg_value)
 
     except KeyboardInterrupt:
         logger.info("Aborted")
@@ -58,13 +60,21 @@ async def main():
         consumer.close()
 
 
-async def produce_responses(producer: AIOProducer):
+async def produce_responses(producer: AIOProducer, msg: Dict[str, str]):
     try:
-        for i in range(5):
-            msg = json.dumps({"value": i + 1})
-            logger.info(f"produce message: {msg}")
-            await producer.produce("nf.response", msg)
-            await asyncio.sleep(1)
+        await asyncio.sleep(1)
+        if msg["responseType"] == "sse":
+            for i in range(5):
+                res = json.dumps({"value": i + 1})
+                logger.info(f"produce message for SSR: {res}")
+                await producer.produce("nf.sse.response", res)
+                await asyncio.sleep(1)
+        else:
+            for i in range(3):
+                res = json.dumps({"value": i + 1})
+                logger.info(f"produce message for streaming: {res}")
+                await producer.produce(f"nf.streaming.response.{i + 1}", res)
+                await asyncio.sleep(1)
 
     except KafkaException as ex:
         logger.error(f"Unexpected error: {ex}")

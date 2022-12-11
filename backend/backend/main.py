@@ -1,5 +1,6 @@
 import asyncio
 import concurrent.futures
+import json
 
 # import json
 import os
@@ -46,10 +47,21 @@ async def data():
     return {"result": "ok"}
 
 
-@app.get("/api/v1/async_data")
-async def async_data():
+@app.get("/api/v1/sse_req")
+async def sse_req():
     try:
-        await producer.produce("nf.request", "request")
+        await producer.produce("nf.request", json.dumps({"responseType": "sse"}))
+    except KafkaException as ex:
+        logger.error(f"Error: {ex}")
+        raise HTTPException(status_code=500, detail=ex.args[0].str())
+
+    return {"result": "ok"}
+
+
+@app.get("/api/v1/streaming_req")
+async def streaing_req():
+    try:
+        await producer.produce("nf.request", json.dumps({"responseType": "streaming"}))
     except KafkaException as ex:
         logger.error(f"Error: {ex}")
         raise HTTPException(status_code=500, detail=ex.args[0].str())
