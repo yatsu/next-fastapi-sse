@@ -8,5 +8,5 @@
 
 (
     cd backend && source ./.venv/bin/activate && \
-    python -m backend.worker --env-file=../.env.development --log-level=info "$@"
+    python -m backend.worker --env-file=../.env.development --log-level=debug --reload "$@"
 )

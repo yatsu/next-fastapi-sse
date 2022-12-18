@@ -53,7 +53,7 @@ pnpm run topics:create
 Start worker:
 
 ```sh
-pnpm run worker:run
+pnpm run worker:dev
 ```
 
 Start back-end:
