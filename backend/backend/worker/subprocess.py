@@ -1,4 +1,5 @@
 import multiprocessing
+from multiprocessing.context import SpawnProcess
 import os
 import sys
 from typing import Callable, Optional
@@ -9,7 +10,7 @@ multiprocessing.allow_connection_pickling()
 spawn = multiprocessing.get_context("spawn")
 
 
-def get_subprocess(config: Config, target: Callable[..., None]):
+def get_subprocess(config: Config, target: Callable[..., None]) -> SpawnProcess:
     stdin_fileno: Optional[int]
     try:
         stdin_fileno = sys.stdin.fileno()

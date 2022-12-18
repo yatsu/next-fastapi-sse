@@ -29,7 +29,7 @@ class WorkerConfig(Config):
         log_level: Optional[Union[str, int]] = None,
         access_log: bool = True,
         use_colors: Optional[bool] = None,
-    ):
+    ) -> None:
         super().__init__(
             app="",
             lifespan=lifespan,
