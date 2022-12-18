@@ -6,9 +6,9 @@ from pydantic import BaseModel
 
 # https://stackoverflow.com/a/67937084
 class LogConfig(BaseModel):
-    """Logging configuration to be set for the server"""
+    """Logging configuration to be set for the backend"""
 
-    LOGGER_NAME: str = "mycoolapp"
+    LOGGER_NAME: str = "backend"
     LOG_FORMAT: str = "%(levelprefix)s | %(asctime)s | %(message)s"
     LOG_LEVEL: str = "DEBUG"
 
@@ -30,9 +30,9 @@ class LogConfig(BaseModel):
         },
     }
     loggers = {
-        "mycoolapp": {"handlers": ["default"], "level": LOG_LEVEL},
+        "backend": {"handlers": ["default"], "level": LOG_LEVEL},
     }
 
 
 dictConfig(LogConfig().dict())
-logger = logging.getLogger("mycoolapp")
+logger = logging.getLogger("backend")
