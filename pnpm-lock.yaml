@@ -3,7 +3,6 @@ lockfileVersion: 5.4
 specifiers:
   '@microsoft/fetch-event-source': 2.0.1
   '@tremor/react': 1.2.3
-  '@types/crypto-js': 4.1.1
   '@types/debug': 4.1.7
   '@types/node': 18.0.3
   '@types/react': 18.0.15
@@ -11,7 +10,6 @@ specifiers:
   autoprefixer: ^10.4.7
   clsx: 1.2.1
   concurrently: 7.5.0
-  crypto-js: 4.1.1
   debug: 4.3.4
   eslint: 8.19.0
   eslint-config-next: latest
@@ -34,10 +32,8 @@ specifiers:
 dependencies:
   '@microsoft/fetch-event-source': 2.0.1
   '@tremor/react': 1.2.3_v2m5e27vhdewzwhryxwfaorcca
-  '@types/crypto-js': 4.1.1
   clsx: 1.2.1
   concurrently: 7.5.0
-  crypto-js: 4.1.1
   debug: 4.3.4
   heroicons: 2.0.13
   kafkajs: 2.2.3
@@ -1640,10 +1636,6 @@ packages:
       - react-dom
     dev: false
 
-  /@types/crypto-js/4.1.1:
-    resolution: {integrity: sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==}
-    dev: false
-
   /@types/d3-color/2.0.3:
     resolution: {integrity: sha512-+0EtEjBfKEDtH9Rk3u3kLOUXM5F+iZK+WvASPb0MhIZl8J8NUvGeZRwKCXl+P3HkYx5TdU4YtcibpqHkSR9n7w==}
     dev: false
@@ -2146,10 +2138,6 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
-
-  /crypto-js/4.1.1:
-    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
-    dev: false
 
   /css-color-keywords/1.0.0:
     resolution: {integrity: sha512-FyyrDHZKEjXDpNJYvVsV960FiqQyXc/LlYmsxl2BcdMb2WPx0OGRVgTg55rPSyLSNMqP52R9r8geSp7apN3Ofg==}

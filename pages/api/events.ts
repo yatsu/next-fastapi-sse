@@ -1,28 +1,12 @@
-import CryptoJS from 'crypto-js';
 import debug from 'debug';
 import { NextApiRequest, NextApiResponse } from 'next';
-import kafka from '../(kafka)';
+import kafka from './(kafka)';
 
 const log = debug('nf:events');
 log.log = console.log.bind(console);
 
 // curl -Nv localhost:3210/api/events/xxx
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { subscriberId } = req.query;
-  let sid = '';
-  try {
-    sid = CryptoJS.AES.decrypt(
-      subscriberId as string,
-      process.env.SESSION_SECRET!,
-    ).toString(CryptoJS.enc.Utf8);
-    log('received subscriber ID', subscriberId, '->', sid);
-  } catch (err) {
-    throw Error(`Invalid subscriberId: ${err}`);
-  }
-  if (sid === '') {
-    throw Error('Invalid subscriberId');
-  }
-
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Content-Type', 'text/event-stream;charset=utf-8');
   res.setHeader('Cache-Control', 'no-cache, no-transform');
@@ -35,7 +19,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   });
 
   const consumer = kafka.consumer({
-    // groupId: `nf.consumer.${sid}`, // must be unique to the browser session
+    // groupId must be unique to the browser session
     groupId: `nf.consumer.${Math.random().toString(32).substring(2)}`,
   });
   await consumer.connect();
@@ -48,7 +32,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     await consumer.run({
       autoCommit: false,
       eachMessage: async ({ topic, partition, message }) => {
-        log(`SSE message: ${message.value ? message.value.toString() : 'null'}`);
+        log(
+          `SSE message: ${message.value ? message.value.toString() : 'null'}`,
+        );
         if (message.value) {
           res.write(`data: ${message.value.toString()}\n\n`);
         }

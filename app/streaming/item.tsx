@@ -1,7 +1,7 @@
 import log from '../logger';
 
-async function getData(subscriberId: string, index: number) {
-  const url = `${process.env.NEXT_PUBLIC_TOP_URL}/api/stream/${subscriberId}/${index}`;
+async function getData(index: number) {
+  const url = `${process.env.NEXT_PUBLIC_TOP_URL}/api/stream/${index}`;
   log(`streaming fetch: ${url}`);
   const res = await fetch(url);
   if (!res.ok) {
@@ -12,14 +12,13 @@ async function getData(subscriberId: string, index: number) {
 }
 
 export type ItemProps = {
-  subscriberId: string;
   index: number;
 };
 
 export default async function Item(props: ItemProps) {
-  const { subscriberId, index } = props;
+  const { index } = props;
 
-  const data = await getData(subscriberId, index);
+  const data = await getData(index);
 
   return (
     <div>

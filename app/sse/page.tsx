@@ -1,4 +1,3 @@
-import CryptoJS from 'crypto-js';
 import Link from 'next/link';
 import log from '../logger';
 import SSEMain from './main';
@@ -11,21 +10,12 @@ async function getData() {
     throw new Error(`Failed to fetch data: ${res.status} ${msg}`);
   }
 
-  const data = await res.json();
-
-  const sid = Math.random().toString(32).substring(2);
-  const subscriberId = encodeURIComponent(
-    CryptoJS.AES.encrypt(sid, process.env.SESSION_SECRET!).toString(),
-  );
-  log(`generate subscriber ID: ${sid} -> ${subscriberId}`);
-
-  return { ...data, subscriberId };
+  return await res.json();
 }
 
 export default async function SSERoot() {
   const data = await getData();
   log('fetched data', data);
-  const { subscriberId } = data;
 
   return (
     <>
@@ -35,7 +25,7 @@ export default async function SSERoot() {
       <div>
         Initial data: <pre>{JSON.stringify(data)}</pre>
       </div>
-      <SSEMain subscriberId={subscriberId} />
+      <SSEMain />
     </>
   );
 }

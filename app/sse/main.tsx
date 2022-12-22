@@ -8,20 +8,14 @@ import { useEffect, useState } from 'react';
 
 import log from '../logger';
 
-type SSEMainProps = {
-  subscriberId: string;
-};
-
-export default function SSEMain(props: SSEMainProps) {
-  const { subscriberId } = props;
-
+export default function SSEMain() {
   const [esmsg, setESMsg] = useState<EventSourceMessage | null>(null);
 
   useEffect(() => {
     const ctrl = new AbortController();
     fetchEventSource(
       // JavaScript (Node.js) implementation
-      `${process.env.NEXT_PUBLIC_TOP_URL}/api/events/${subscriberId}`,
+      `${process.env.NEXT_PUBLIC_TOP_URL}/api/events`,
       // Python implementation (does not work well)
       // `${process.env.NEXT_PUBLIC_TOP_URL}/api/events/${subscriberId}`
       {
