@@ -2,7 +2,6 @@ import asyncio
 import concurrent.futures
 import json
 
-# import json
 import os
 
 from confluent_kafka import KafkaException

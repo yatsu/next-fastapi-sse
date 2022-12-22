@@ -1,10 +1,10 @@
 import asyncio
+import logging
 from threading import Thread
 from typing import Any
 
 import confluent_kafka
 from confluent_kafka import KafkaException
-from sseclient import logging
 
 logger = logging.getLogger("worker")
 

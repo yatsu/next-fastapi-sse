@@ -1,9 +1,9 @@
+import logging
 import signal
 from socket import socket
 from typing import Callable, List, Optional
 
 import click
-from sseclient import logging
 from uvicorn.supervisors import Multiprocess
 from uvicorn.supervisors.multiprocess import HANDLED_SIGNALS
 

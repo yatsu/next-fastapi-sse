@@ -1,10 +1,8 @@
-import os
+import logging
 import sys
-import threading
 from typing import List
 
 import click
-from sseclient import logging
 from uvicorn.config import LifespanType
 from uvicorn.main import LIFESPAN_CHOICES
 
