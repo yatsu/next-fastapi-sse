@@ -1,6 +1,8 @@
 import '@/styles/dist.css';
 import React from 'react';
 
+import '@tremor/react/dist/esm/tremor.css';
+
 export default function RootLayout({
   children,
 }: {
@@ -12,7 +14,7 @@ export default function RootLayout({
         <title>Next.js FastAPI example</title>
       </head>
       <body>
-        <div className="mx-4 my-2">{children}</div>
+        <div className="my-2 mx-4">{children}</div>
       </body>
     </html>
   );
