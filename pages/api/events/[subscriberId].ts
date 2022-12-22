@@ -35,7 +35,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   });
 
   const consumer = kafka.consumer({
-    groupId: `nf.consumer.${sid}`, // must be unique to the browser session
+    // groupId: `nf.consumer.${sid}`, // must be unique to the browser session
+    groupId: `nf.consumer.${Math.random().toString(32).substring(2)}`,
   });
   await consumer.connect();
   log(`SSE start: ${process.env.KAFKA_SERVER}`);
@@ -47,7 +48,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     await consumer.run({
       autoCommit: false,
       eachMessage: async ({ topic, partition, message }) => {
-        log(`message: ${message.value ? message.value.toString() : 'null'}`);
+        log(`SSE message: ${message.value ? message.value.toString() : 'null'}`);
         if (message.value) {
           res.write(`data: ${message.value.toString()}\n\n`);
         }

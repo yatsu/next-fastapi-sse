@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@microsoft/fetch-event-source': 2.0.1
   '@tremor/react': 1.2.3
   '@types/crypto-js': 4.1.1
   '@types/debug': 4.1.7
@@ -14,6 +15,7 @@ specifiers:
   debug: 4.3.4
   eslint: 8.19.0
   eslint-config-next: latest
+  heroicons: 2.0.13
   kafkajs: 2.2.3
   next: latest
   postcss: ^8.4.14
@@ -22,7 +24,6 @@ specifiers:
   prop-types: ^15.6.0
   react: 18.2.0
   react-dom: 18.2.0
-  react-hooks-sse: 2.1.0
   scripty: 2.1.1
   styled-components: 6.0.0-beta.2
   styled-jsx: 5.1.0
@@ -31,17 +32,18 @@ specifiers:
   use-count-up: 3.0.1
 
 dependencies:
+  '@microsoft/fetch-event-source': 2.0.1
   '@tremor/react': 1.2.3_v2m5e27vhdewzwhryxwfaorcca
   '@types/crypto-js': 4.1.1
   clsx: 1.2.1
   concurrently: 7.5.0
   crypto-js: 4.1.1
   debug: 4.3.4
+  heroicons: 2.0.13
   kafkajs: 2.2.3
   next: 13.0.7_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-hooks-sse: 2.1.0_react@18.2.0
   styled-components: 6.0.0-beta.2_biqbaboplfbrettd7655fr4n2y
   styled-jsx: 5.1.0_react@18.2.0
   use-count-up: 3.0.1_react@18.2.0
@@ -1426,6 +1428,10 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
+    dev: false
+
+  /@microsoft/fetch-event-source/2.0.1:
+    resolution: {integrity: sha512-W6CLUJ2eBMw3Rec70qrsEW0jOm/3twwJv21mrmj2yORiaVmVYGS4sSS5yUwvQc1ZlDLYGPnClVWmUUMagKNsfA==}
     dev: false
 
   /@next/env/13.0.7:
@@ -2943,6 +2949,10 @@ packages:
     dependencies:
       function-bind: 1.1.1
 
+  /heroicons/2.0.13:
+    resolution: {integrity: sha512-INL+CaS5eJ8+kkXc6kz+i/4m6AWYESGpyorDIZDPH281vZWjV/W6coGmXVZdvyYVLIbPx0id4fPbWvCj//MW5A==}
+    dev: false
+
   /ignore/5.2.0:
     resolution: {integrity: sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==}
     engines: {node: '>= 4'}
@@ -3570,15 +3580,6 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
-    dev: false
-
-  /react-hooks-sse/2.1.0_react@18.2.0:
-    resolution: {integrity: sha512-w7gFWUd8BPfb1bnB5A7zNX2scSttKQQeozJ/jJV0Bnh+7sXeWz+KMwtrEPRrzUzt0CvL7C1ClHJvO3s5pBVJFQ==}
-    peerDependencies:
-      react: '>= 16.7.0'
-    dependencies:
-      '@babel/runtime': 7.20.1
-      react: 18.2.0
     dev: false
 
   /react-is/16.13.1:
