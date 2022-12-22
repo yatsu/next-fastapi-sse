@@ -24,12 +24,12 @@ async function getData() {
 
 export default async function SSERoot() {
   const data = await getData();
-  log('fetched data', data);
+  log('SSR fetched data', data);
   const { subscriberId } = data;
 
   return (
     <>
-      <Link href="/" prefetch={false} className="text-blue-500 hover:underline">
+      <Link href="/" className="text-blue-500 hover:underline">
         Top
       </Link>
       <div>

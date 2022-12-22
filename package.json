@@ -25,17 +25,22 @@
     }
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.0.0",
+    "@tanstack/react-query-devtools": "4.20.4",
     "@tremor/react": "1.2.3",
     "@types/crypto-js": "4.1.1",
     "clsx": "1.2.1",
     "concurrently": "7.5.0",
     "crypto-js": "4.1.1",
     "debug": "4.3.4",
+    "heroicons": "1.0.6",
     "kafkajs": "2.2.3",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hooks-sse": "2.1.0",
+    "react-query-subscription": "2.0.0-beta.1",
+    "rx-event-source": "1.2.0",
+    "rxjs": "^7.1.0",
     "styled-components": "6.0.0-beta.2",
     "styled-jsx": "5.1.0",
     "use-count-up": "3.0.1"
