@@ -14,7 +14,6 @@ export default function Page() {
           <div className="h-28">
             <Link
               href="/sse"
-              prefetch={false}
               className="text-blue-500 hover:underline"
             >
               SSE example

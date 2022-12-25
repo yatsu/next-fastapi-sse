@@ -39,6 +39,8 @@ export default function SSEMain(props: SSEMainProps) {
   function handleClickGet(ev: React.MouseEvent<HTMLButtonElement>) {
     ev.preventDefault();
 
+    dispatch({ type: 'set', results: initialData });
+
     const url = `/api/v1/sse_req`;
     log(`fetch: ${url}`);
     fetch(url).then(() => {});
@@ -50,9 +52,9 @@ export default function SSEMain(props: SSEMainProps) {
     const url = `/api/cache/clear`;
     log(`fetch: ${url}`);
     fetch(url).then((res) => {
-      res.json().then((data) => {
-        log('cleared data', data.results);
-        dispatch({ type: 'set', results: data.results });
+      res.json().then(() => {
+        log('cleared data', initialData);
+        dispatch({ type: 'set', results: initialData });
       });
     });
   }
@@ -82,7 +84,7 @@ type SSEDataProps = {
 
 function SSEData(props: SSEDataProps) {
   const { data } = props;
-  log('SSE data', data);
+  // log('SSE data', data);
 
   return <p>{data ? JSON.stringify(data) : '...'}</p>;
 }
