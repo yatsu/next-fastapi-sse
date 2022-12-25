@@ -1,5 +1,6 @@
 import debug from 'debug';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { serverSideCache } from '../../cache';
 import kafka from './(kafka)';
 
 const log = debug('nf:events');
@@ -32,11 +33,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     await consumer.run({
       autoCommit: false,
       eachMessage: async ({ topic, partition, message }) => {
-        log(
-          `SSE message: ${message.value ? message.value.toString() : 'null'}`,
-        );
         if (message.value) {
-          res.write(`data: ${message.value.toString()}\n\n`);
+          const value = JSON.parse(message.value.toString());
+          serverSideCache.results = { ...serverSideCache.results, ...value };
+          log(`SSE cache: ${JSON.stringify(serverSideCache.results)}`);
+          log(`SSE send message: ${JSON.stringify(value)}`);
+          res.write(`data: ${JSON.stringify(value)}\n\n`);
         }
         await consumer.commitOffsets([
           { topic, partition, offset: (Number(message.offset) + 1).toString() },

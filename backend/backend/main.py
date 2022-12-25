@@ -1,7 +1,6 @@
 import asyncio
 import concurrent.futures
 import json
-
 import os
 
 from confluent_kafka import KafkaException
@@ -43,7 +42,7 @@ def shutdown_event():
 
 @app.get("/api/v1/data")
 async def data():
-    return {"result": "ok"}
+    return {"results": {"0": {"value": 0}}}
 
 
 @app.get("/api/v1/sse_req")
@@ -112,7 +111,7 @@ async def stream(request: Request):
         # finally:
         #     consumer.close()
 
-        for i in range(5):
+        for i in range(1, 6):
             await asyncio.sleep(1)
             if await request.is_disconnected():
                 break
@@ -121,7 +120,7 @@ async def stream(request: Request):
                 "event": "message",
                 "id": f"msg-{i}",
                 "retry": 30000,
-                "data": f'{{"value": {i + 1}}}',
+                "data": json.dumps({f"{i}": {"value": {i}}}),
             }
 
     # Disable `Content-Encoding: gzip` to let each event can reach the client

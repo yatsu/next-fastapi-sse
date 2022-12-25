@@ -116,16 +116,16 @@ class Worker(object):
         try:
             await asyncio.sleep(1)
             if msg["responseType"] == "sse":
-                for i in range(5):
-                    res = json.dumps({"value": i + 1})
+                for i in range(1, 6):
+                    res = json.dumps({f"{i}": {"value": i}})
                     logger.info(f"produce message for SSR: {res}")
                     await producer.produce("nf.sse.response", res)
                     await asyncio.sleep(1)
             else:
-                for i in range(3):
-                    res = json.dumps({"value": i + 1})
+                for i in range(1, 4):
+                    res = json.dumps({f"{i}": {"value": i}})
                     logger.info(f"produce message for streaming: {res}")
-                    await producer.produce(f"nf.streaming.response.{i + 1}", res)
+                    await producer.produce(f"nf.streaming.response.{i}", res)
                     await asyncio.sleep(1)
 
         except KafkaException as ex:
