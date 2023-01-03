@@ -40,7 +40,7 @@ class WorkerChangeReload(ChangeReload):
         self.process.start()
 
     def restart(self) -> None:
-        logger.debug("Restating WorkerChangeReload")
+        logger.debug("Restarting WorkerChangeReload")
         self.process.terminate()
         self.process.join()
 
